@@ -23,9 +23,6 @@ public class DssForTvSelection {
                 ProgramFrame programFrame = new ProgramFrame();
                 programFrame.setVisible(true);
                 
-                Container contentPane = programFrame.getContentPane();
-                JLabel jLabel = new JLabel("some text");
-                contentPane.add(jLabel);
             }
         });
     }

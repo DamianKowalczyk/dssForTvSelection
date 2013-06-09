@@ -4,7 +4,9 @@
  */
 package damiankowalczyk.studies.swd;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
@@ -14,34 +16,31 @@ import javax.swing.JLabel;
  * @author Damian
  */
 public class ProgramFrame extends javax.swing.JFrame {
+	
+	private final int width = 800;
+	private final int height = 500;
     
     StartPanel startPanel = new StartPanel();
-    JLabel jLabel = new JLabel("some text");
-      
+          
     /**
      * Creates new form ProgramFrame
      */
     public ProgramFrame() {
         initComponents();
-    
-   
+       
+        setSize(width, height);
         setFrameIcon();
-        addStartPanel();
+        setLayout(new BorderLayout());
         
-        
+        getContentPane().add(startPanel);       
     }
-
+  
     private void setFrameIcon(){
         Toolkit kit = Toolkit.getDefaultToolkit();
         Image img = kit.getImage("images/google_tv_logo.jpg");
         setIconImage(img);
     }
-    
-    private void addStartPanel(){
-        Container contentPane = getContentPane();
-        contentPane.add(jLabel);
-//        contentPane.add(startPanel);
-    }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
