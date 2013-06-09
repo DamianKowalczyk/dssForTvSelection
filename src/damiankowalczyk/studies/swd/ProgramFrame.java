@@ -20,7 +20,8 @@ public class ProgramFrame extends javax.swing.JFrame {
         initComponents();
         
         Toolkit kit = Toolkit.getDefaultToolkit();
-        Image img = kit
+        Image img = kit.getImage("images/google_tv_logo.jpg");
+        setIconImage(img);
     }
 
     /**
@@ -39,11 +40,11 @@ public class ProgramFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 475, Short.MAX_VALUE)
+            .addGap(0, 654, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 352, Short.MAX_VALUE)
+            .addGap(0, 388, Short.MAX_VALUE)
         );
 
         pack();
