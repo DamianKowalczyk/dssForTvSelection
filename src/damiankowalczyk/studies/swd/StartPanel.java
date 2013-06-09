@@ -15,6 +15,7 @@ public class StartPanel extends javax.swing.JPanel {
      */
     public StartPanel() {
         initComponents();
+        setVisible(true);
     }
 
     /**
