@@ -45,7 +45,7 @@ public class StartFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Wybierz rodzaj matrycy:");
+        jLabel1.setText("Choose panel:");
 
         jCheckBox1.setText("LCD");
 
@@ -58,7 +58,7 @@ public class StartFrame extends javax.swing.JFrame {
 
         jCheckBox3.setText("Plazma");
 
-        jLabel2.setText("Wybierz wielkość:");
+        jLabel2.setText("Choose size:");
 
         jCheckBox4.setText("19''-28''");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -81,11 +81,16 @@ public class StartFrame extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox7.setText("50'' i większe");
+        jCheckBox7.setText("50'' and more");
+        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox7ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("OK");
 
-        jLabel3.setText("Podaj ogólne preferencje dotyczace telewizorów:");
+        jLabel3.setText("Set your general preferences about TVs");
 
         jButton2.setText("OK");
 
@@ -119,26 +124,28 @@ public class StartFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(101, 101, 101)
-                        .addComponent(jLabel3)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jCheckBox3)
+                                        .addComponent(jCheckBox2)
+                                        .addComponent(jCheckBox1)
+                                        .addComponent(jCheckBox4)
+                                        .addComponent(jCheckBox5)
+                                        .addComponent(jCheckBox6)
+                                        .addComponent(jCheckBox7))))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jCheckBox3)
-                                .addComponent(jCheckBox2)
-                                .addComponent(jCheckBox1)
-                                .addComponent(jLabel2)
-                                .addComponent(jCheckBox4)
-                                .addComponent(jCheckBox5)
-                                .addComponent(jCheckBox6)
-                                .addComponent(jCheckBox7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(163, 163, 163))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +153,7 @@ public class StartFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -189,6 +196,10 @@ public class StartFrame extends javax.swing.JFrame {
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox7ActionPerformed
 
     /**
      * @param args the command line arguments

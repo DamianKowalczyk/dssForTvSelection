@@ -27,31 +27,35 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="49" max="32767" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox5" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox6" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,7 +65,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel3" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -94,7 +98,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Wybierz rodzaj matrycy:"/>
+        <Property name="text" type="java.lang.String" value="Choose panel:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
@@ -117,7 +121,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Wybierz wielko&#x15b;&#x107;:"/>
+        <Property name="text" type="java.lang.String" value="Choose size:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox4">
@@ -146,8 +150,11 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="50&apos;&apos; i wi&#x119;ksze"/>
+        <Property name="text" type="java.lang.String" value="50&apos;&apos; and more"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox7ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
@@ -156,7 +163,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Podaj og&#xf3;lne preferencje dotyczace telewizor&#xf3;w:"/>
+        <Property name="text" type="java.lang.String" value="Set your general preferences about TVs"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">

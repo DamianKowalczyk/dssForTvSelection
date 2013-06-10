@@ -52,7 +52,7 @@ public class StartPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
 
-        jLabel1.setText("Wybierz rodzaj matrycy:");
+        jLabel1.setText("Choose panel:");
 
         jCheckBox1.setText("LCD");
 
@@ -65,7 +65,7 @@ public class StartPanel extends javax.swing.JPanel {
 
         jCheckBox3.setText("Plazma");
 
-        jLabel2.setText("Wybierz wielkość:");
+        jLabel2.setText("Choose size:");
 
         jCheckBox4.setText("19''-28''");
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +88,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox7.setText("50'' i większe");
+        jCheckBox7.setText("50'' and more");
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +97,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Podaj ogólne preferencje dotyczace telewizorów:");
+        jLabel3.setText("Set your general preferences about TVs");
 
         jButton2.setText("OK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -150,13 +150,12 @@ public class StartPanel extends javax.swing.JPanel {
                                 .addComponent(jButton1)
                                 .addComponent(jCheckBox7)))
                         .addGap(28, 28, 28)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(150, 150, 150))))
+                        .addGap(197, 197, 197)
+                        .addComponent(jLabel3)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +163,7 @@ public class StartPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -209,9 +208,9 @@ public class StartPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox6ActionPerformed
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     	// TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         programFrame.showCompareTVsPanel();
