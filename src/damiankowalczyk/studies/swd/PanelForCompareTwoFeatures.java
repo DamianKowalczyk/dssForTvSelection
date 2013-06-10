@@ -16,6 +16,12 @@ public class PanelForCompareTwoFeatures extends javax.swing.JPanel {
     public PanelForCompareTwoFeatures() {
         initComponents();
     }
+    
+    public PanelForCompareTwoFeatures(String leftText, String righText) {
+        this();
+        jLabelLeft.setText(leftText);
+        jLabelRight.setText(righText);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

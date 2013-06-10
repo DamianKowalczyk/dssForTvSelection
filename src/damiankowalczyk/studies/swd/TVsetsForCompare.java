@@ -38,10 +38,13 @@ public class TVsetsForCompare {
 		TVset result = new TVset();
 		result.name = tvFeatures[0];
 		result.panel = tvFeatures[1];
-		result.size = Float.parseFloat(tvFeatures[1]);
-		result.price = Float.parseFloat(tvFeatures[2]);
-		if (tvFeatures[3]!="")
-			result.internetFunction = tvFeatures[3];
+		result.size = Float.parseFloat(tvFeatures[2]);
+		result.price = Float.parseFloat(tvFeatures[3]);
+		result. 
+		
+		/*if (tvFeatures[3]!="")
+			result.internetFunction = tvFeatures[3];*/
+		
 		
 		return result;
 	}

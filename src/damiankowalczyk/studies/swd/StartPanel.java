@@ -4,7 +4,10 @@
  */
 package damiankowalczyk.studies.swd;
 
+import java.awt.GridLayout;
 import java.util.ArrayList;
+
+import javax.swing.JButton;
 
 /**
  *
@@ -14,16 +17,38 @@ public class StartPanel extends javax.swing.JPanel {
 
     private ProgramFrame programFrame;
     
-    //private ArrayList<E>
+    private ArrayList<PanelForCompareTwoFeatures> panelsForCompTwoFeatures; 
 	
 	
 	/**
      * Creates new form StartPanel
      */
     public StartPanel() {
-    	TVAllFeautures tvAllFeatures = new TVAllFeautures();
+    	initComponents();
     	    	
-        initComponents();
+    	TVAllFeautures tvAllFeatures = new TVAllFeautures();
+    	String[][] pairsOfFeauture = tvAllFeatures.getAllPossiblePairs();
+    	
+        int featuresPairsNumber = tvAllFeatures.getAllPossiblePairs().length;
+        panelsForCompTwoFeatures = new ArrayList<>(featuresPairsNumber);
+        
+        jPanelForFeauturePairsList.setLayout(new GridLayout(featuresPairsNumber, 1));
+        
+        for (int i = 0; i < featuresPairsNumber; i++) {
+        	String leftText, rightText;
+        	leftText = pairsOfFeauture[i][0];
+        	rightText = pairsOfFeauture[i][1];
+        	PanelForCompareTwoFeatures tmp = new PanelForCompareTwoFeatures(leftText,rightText);
+			panelsForCompTwoFeatures.add(tmp);
+			jPanelForFeauturePairsList.add(tmp);
+		} 
+        
+        /*jPanel1.getLayout().
+        .add(new JButton("this is some button"));*/
+        
+        //jPanelForFeauturePairsList.add(new JButton("this is some button"));
+        //jScrollPane1.setVisible(true);
+        
         setVisible(true);
     }
     
@@ -60,6 +85,7 @@ public class StartPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jPanelForFeauturePairsList = new javax.swing.JPanel();
 
         jLabel1.setText("Choose panel:");
 
@@ -114,6 +140,9 @@ public class StartPanel extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jPanelForFeauturePairsList.setLayout(new java.awt.GridLayout(1, 1));
+        jScrollPane1.setViewportView(jPanelForFeauturePairsList);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,6 +269,7 @@ public class StartPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelForFeauturePairsList;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

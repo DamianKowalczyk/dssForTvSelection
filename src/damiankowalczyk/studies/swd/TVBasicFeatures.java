@@ -1,7 +1,7 @@
 package damiankowalczyk.studies.swd;
 
 public enum TVBasicFeatures {
-	BRAND, DISPLAY_TECHNOLOGY, SCREEN_SIZE, INTERNET_FUNCTIONS, FLAT_MOUNTING_INTERFACE;
+	BRAND, DISPLAY_TECHNOLOGY, SCREEN_SIZE, PRICE, INTERNET_FUNCTIONS, FLAT_MOUNTING_INTERFACE;
 	
 	public String toString() {
 		String s = super.toString();
