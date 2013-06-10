@@ -4,24 +4,49 @@
  */
 package damiankowalczyk.studies.swd;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Damian
  */
-public class PanelForCompareTVs extends javax.swing.JPanel {
-
-    JLabel labIntoScrollPanel = new JLabel("label into scrollPanel");
-    /**
+public class PanelForCompareTVs extends javax.swing.JPanel {    
+    
+	private ProgramFrame programFrame;
+	private StartPanel startPanel;
+	
+	/**
      * Creates new form PanelForCompareTVs
      */
     public PanelForCompareTVs() {
         initComponents();
+        setVisible(false);
     }
     
-    public void addToScrollPanel(){
+    public PanelForCompareTVs(ProgramFrame programFrame) {
+    	this();
+		this.programFrame = programFrame;
+	}
+
+	public void addToScrollPanel(){
         
+    }
+    
+    public void setStartPanel(StartPanel startPanel) {
+		this.startPanel = startPanel;
+	}
+    
+    private void backStartViewToStartFrame() {
+    	setVisible(false);
+    	programFrame.getStartPanel().setVisible(true);
+		programFrame.add(programFrame.getStartPanel());
+	}
+    
+    private String[] getDecisionOrders(){
+    	String[] resultVector = {"sony", "philips", "sontax", "sharp", "LG", "other"};
+    	return resultVector;    	
     }
 
     /**
@@ -38,8 +63,18 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
 
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Finish");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -67,9 +102,24 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    	JFrame frame = new JFrame("Suggested, best choices in order:");
+    	frame.setSize(400, 200);
+    	setFrameInMiddleOfScreen(JFrame frame);
+    	JOptionPane.showMessageDialog(frame,
+    		    getDecisionOrders());
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    	backStartViewToStartFrame();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    	
 }

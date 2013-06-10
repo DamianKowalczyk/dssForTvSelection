@@ -10,13 +10,23 @@ package damiankowalczyk.studies.swd;
  */
 public class StartPanel extends javax.swing.JPanel {
 
-    /**
+    private ProgramFrame programFrame;
+	
+	
+	/**
      * Creates new form StartPanel
      */
     public StartPanel() {
         initComponents();
         setVisible(true);
     }
+    
+    
+    public StartPanel(ProgramFrame programFrame){
+    	this();
+    	this.programFrame = programFrame;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,6 +100,11 @@ public class StartPanel extends javax.swing.JPanel {
         jLabel3.setText("Podaj ogólne preferencje dotyczace telewizorów:");
 
         jButton2.setText("OK");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,7 +114,7 @@ public class StartPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 499, Short.MAX_VALUE)
+                        .addGap(0, 509, Short.MAX_VALUE)
                         .addComponent(jButton2))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
@@ -134,7 +149,7 @@ public class StartPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jButton1)
                                 .addComponent(jCheckBox7)))
-                        .addGap(38, 38, 38)
+                        .addGap(28, 28, 28)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -193,10 +208,14 @@ public class StartPanel extends javax.swing.JPanel {
     private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox6ActionPerformed
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    	// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        programFrame.showCompareTVsPanel();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

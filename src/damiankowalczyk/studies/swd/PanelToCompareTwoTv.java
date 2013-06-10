@@ -14,7 +14,7 @@ public class PanelToCompareTwoTv extends javax.swing.JPanel {
      * Creates new form PanelToCompareTwoTv
      */
     public PanelToCompareTwoTv() {
-        initComponents();
+        initComponents();                
     }
 
     /**
