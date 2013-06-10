@@ -4,6 +4,8 @@
  */
 package damiankowalczyk.studies.swd;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Damian
@@ -11,16 +13,23 @@ package damiankowalczyk.studies.swd;
 public class StartPanel extends javax.swing.JPanel {
 
     private ProgramFrame programFrame;
+    
+    //private ArrayList<E>
 	
 	
 	/**
      * Creates new form StartPanel
      */
     public StartPanel() {
+    	TVAllFeautures tvAllFeatures = new TVAllFeautures();
+    	    	
         initComponents();
         setVisible(true);
     }
     
+    private void customizeAndAddSlidersForFeatures(){
+    	//for
+    }
     
     public StartPanel(ProgramFrame programFrame){
     	this();
@@ -97,7 +106,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Set your general preferences about TVs");
+        jLabel3.setText("Set your priority");
 
         jButton2.setText("OK");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -150,12 +159,13 @@ public class StartPanel extends javax.swing.JPanel {
                                 .addComponent(jButton1)
                                 .addComponent(jCheckBox7)))
                         .addGap(28, 28, 28)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(23, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel3)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(278, 278, 278))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
