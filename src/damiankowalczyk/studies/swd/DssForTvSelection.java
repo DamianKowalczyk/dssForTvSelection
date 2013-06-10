@@ -4,13 +4,6 @@
  */
 package damiankowalczyk.studies.swd;
 
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Point;
-import java.awt.Toolkit;
-
-import javax.swing.JLabel;
 
 /**
  * 
@@ -32,7 +25,7 @@ public class DssForTvSelection {
 		/* Create and display the form */
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				DssForTvSelection dssForTvSelection = new DssForTvSelection();
+				new DssForTvSelection();
 			}
 		});
 	}
