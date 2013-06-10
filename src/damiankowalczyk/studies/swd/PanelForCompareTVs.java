@@ -4,8 +4,10 @@
  */
 package damiankowalczyk.studies.swd;
 
+import java.awt.GridLayout;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,22 +18,47 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 
 	private ProgramFrame programFrame;
 	private StartPanel startPanel;
+		
+	TVset[][] pairsOfTVtoCompare;
+	PanelToCompareTwoTv[] panelsOfComparedTVs;
+
 
 	/**
 	 * Creates new form PanelForCompareTVs
 	 */
 	public PanelForCompareTVs() {
 		initComponents();
-		setVisible(false);
+		setVisible(false);		
 	}
 
 	public PanelForCompareTVs(ProgramFrame programFrame) {
 		this();
-		this.programFrame = programFrame;
+		this.programFrame = programFrame;		 
 	}
 
+	private void createPairsOfTVsToCompare() {		
+		ArrayList<TVset> allFilteredTVs = new TVsetsForCompare().getFilteredTVs();
+		int pairsOfTVsToCompareNumber = (allFilteredTVs.size()*(allFilteredTVs.size()-1))/2;
+		
+		pairsOfTVtoCompare = new TVset[pairsOfTVsToCompareNumber][2];
+		
+		int index = 0;
+		for (int i = 0; i < allFilteredTVs.size(); i++) {
+			for (int j = 0; j < allFilteredTVs.size()-1; j++) {
+				pairsOfTVtoCompare[index][0]= allFilteredTVs.get(i);
+				pairsOfTVtoCompare[index][1]= allFilteredTVs.get(j);
+				index++;
+			}
+		}
+	}
+	
 	public void addToScrollPanel() {
-
+		jPanelForCompareTwoTVList.setLayout(new GridLayout(pairsOfTVtoCompare.length, 1));
+		
+		panelsOfComparedTVs = new PanelToCompareTwoTv[pairsOfTVtoCompare.length];
+		for (int i = 0; i < pairsOfTVtoCompare.length; i++) {
+			panelsOfComparedTVs[i]= new PanelToCompareTwoTv();
+		}
 	}
 
 	public void setStartPanel(StartPanel startPanel) {
@@ -57,69 +84,67 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	 */
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed"
-	// desc="Generated Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		jScrollPane1 = new javax.swing.JScrollPane();
-		jButton1 = new javax.swing.JButton();
-		jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanelForCompareTwoTVList = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-		jButton1.setText("Back");
-		jButton1.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton1ActionPerformed(evt);
-			}
-		});
+        javax.swing.GroupLayout jPanelForCompareTwoTVListLayout = new javax.swing.GroupLayout(jPanelForCompareTwoTVList);
+        jPanelForCompareTwoTVList.setLayout(jPanelForCompareTwoTVListLayout);
+        jPanelForCompareTwoTVListLayout.setHorizontalGroup(
+            jPanelForCompareTwoTVListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 378, Short.MAX_VALUE)
+        );
+        jPanelForCompareTwoTVListLayout.setVerticalGroup(
+            jPanelForCompareTwoTVListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
 
-		jButton2.setText("Finish");
-		jButton2.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton2ActionPerformed(evt);
-			}
-		});
+        jScrollPane1.setViewportView(jPanelForCompareTwoTVList);
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-		this.setLayout(layout);
-		layout.setHorizontalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(jScrollPane1)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		jButton1)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-																		266,
-																		Short.MAX_VALUE)
-																.addComponent(
-																		jButton2)))
-								.addContainerGap()));
-		layout.setVerticalGroup(layout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(
-						layout.createSequentialGroup()
-								.addContainerGap()
-								.addComponent(jScrollPane1,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										262,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(
-										javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-										javax.swing.GroupLayout.DEFAULT_SIZE,
-										Short.MAX_VALUE)
-								.addGroup(
-										layout.createParallelGroup(
-												javax.swing.GroupLayout.Alignment.BASELINE)
-												.addComponent(jButton1)
-												.addComponent(jButton2))
-								.addContainerGap()));
-	}// </editor-fold>//GEN-END:initComponents
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Finish");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 266, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap())
+        );
+    }// </editor-fold>//GEN-END:initComponents
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
 		JFrame frame = new JFrame("Suggested, best choices in order:");
@@ -131,9 +156,10 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 		backStartViewToStartFrame();
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton jButton1;
-	private javax.swing.JButton jButton2;
-	private javax.swing.JScrollPane jScrollPane1;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel jPanelForCompareTwoTVList;
+    private javax.swing.JScrollPane jScrollPane1;
+    // End of variables declaration//GEN-END:variables
 }

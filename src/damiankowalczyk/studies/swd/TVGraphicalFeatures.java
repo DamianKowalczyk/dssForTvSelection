@@ -2,7 +2,7 @@ package damiankowalczyk.studies.swd;
 
 public enum TVGraphicalFeatures {
 
-	FRAME_APPEARANCE, SHAPE_OF_FOOT, FLAT_MOUNTING_INTERFACE;
+	FRAME_APPEARANCE, SHAPE_OF_FOOT;
 
 	public String toString() {
 		String s = super.toString();

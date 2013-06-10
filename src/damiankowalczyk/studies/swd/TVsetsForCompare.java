@@ -7,12 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TVsetsForCompare {
+	
 	ArrayList<TVset> loadedTvs = new ArrayList<TVset>();
-	ArrayList<TVset> TvsToCompare = new ArrayList<TVset>();
-	
-	
-	
-	
+	ArrayList<TVset> TvsToCompare = new ArrayList<TVset>();	
 	
 	public void loadTVsets(){
 		BufferedReader br;
@@ -20,7 +17,7 @@ public class TVsetsForCompare {
 			br = new BufferedReader(new FileReader("/TVSets/descriptions/TVsets.txt"));
 			String line;
 			while ((line = br.readLine()) != null) {
-			   // process the line.
+			   loadedTvs.add(createNewTVset(line));
 			}
 			br.close();
 		} catch (FileNotFoundException e) {
@@ -32,21 +29,26 @@ public class TVsetsForCompare {
 		}		
 	}
 	
-	public TVset createNewTVset(String TVdescription){
+	private TVset createNewTVset(String TVdescriptionFromFile){
 		String[] tvFeatures;
-		tvFeatures = TVdescription.split(";");
-		TVset result = new TVset();
-		result.name = tvFeatures[0];
-		result.panel = tvFeatures[1];
-		result.size = Float.parseFloat(tvFeatures[2]);
-		result.price = Float.parseFloat(tvFeatures[3]);
-		result. 
+		tvFeatures = TVdescriptionFromFile.split(";");
+		TVset result = new TVset(tvFeatures);		
 		
 		/*if (tvFeatures[3]!="")
-			result.internetFunction = tvFeatures[3];*/
-		
-		
+			result.internetFunction = tvFeatures[3];*/		
 		return result;
+	}
+	
+	private ArrayList<TVset> chooseOnlyTVWithChoosenParameters(){
+		// modify this code in further time
+		//should make some filtration
+		TvsToCompare = loadedTvs;
+		
+		return TvsToCompare;
+	}
+	
+	public ArrayList<TVset> getFilteredTVs() {
+		return chooseOnlyTVWithChoosenParameters();
 	}
 	
 }

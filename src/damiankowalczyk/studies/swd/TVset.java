@@ -7,23 +7,26 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-public class TVset {	
-	
-	/*String name;
-	String panel;
-	float size;
-	float price;
-	String internetFunction = "none";*/
-	
-	ArrayList<String> feautures; 
+public class TVset {		
 		
+	ArrayList<String> feautures; 		
 	Image image;
-
-	
-	
+		
 	public TVset() {
-		int featuresNumber = TVBasicFeatures.values().length + TVGraphicalFeatures.values().length;
+		int featuresNumber = TVBasicFeatures.values().length;
 		feautures = new ArrayList<String>(featuresNumber);
+	}
+	
+	public TVset(String[] tvFeatures) {
+		this();
+		setFeautures(tvFeatures);
+		loadImage();
+	}
+
+	private void setFeautures(String[] feaut){
+		for (int i = 0; i < feaut.length; i++) {
+			feautures.add(feaut[i]);
+		}
 	}
 	
 	private void loadImage() {
@@ -41,7 +44,4 @@ public class TVset {
 		tVset.size = 50.0f;*/
 		tVset.loadImage();	
 	}
-	
-	
-
 }
