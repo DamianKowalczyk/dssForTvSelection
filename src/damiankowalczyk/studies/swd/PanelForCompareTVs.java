@@ -5,6 +5,8 @@
 package damiankowalczyk.studies.swd;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -22,6 +24,7 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	TVset[][] pairsOfTVtoCompare;
 	PanelToCompareTwoTv[] panelsOfComparedTVs;
 
+	
 
 	/**
 	 * Creates new form PanelForCompareTVs
@@ -52,12 +55,12 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 		}
 	}
 	
-	public void addToScrollPanel() {
+	private void addToScrollPanel() {
 		jPanelForCompareTwoTVList.setLayout(new GridLayout(pairsOfTVtoCompare.length, 1));
 		
 		panelsOfComparedTVs = new PanelToCompareTwoTv[pairsOfTVtoCompare.length];
 		for (int i = 0; i < pairsOfTVtoCompare.length; i++) {
-			panelsOfComparedTVs[i]= new PanelToCompareTwoTv();
+			panelsOfComparedTVs[i]= new PanelToCompareTwoTv(pairsOfTVtoCompare[i][0], pairsOfTVtoCompare[i][1]);
 		}
 	}
 
@@ -162,4 +165,13 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelForCompareTwoTVList;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    
+    class pressOkListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			createPairsOfTVsToCompare();			
+		}
+    	
+    }
 }
