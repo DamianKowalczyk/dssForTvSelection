@@ -22,6 +22,10 @@ public class PanelForCompareTwoFeatures extends javax.swing.JPanel {
         jLabelLeft.setText(leftText);
         jLabelRight.setText(righText);
     }
+    
+    public int getSliderValue(){
+    	return jSlider1.getValue();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

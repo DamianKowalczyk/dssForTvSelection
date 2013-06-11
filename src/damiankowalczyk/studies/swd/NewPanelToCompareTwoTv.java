@@ -6,6 +6,7 @@ package damiankowalczyk.studies.swd;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ import damiankowalczyk.studies.swd.OldPanelToCompareTwoTv.ImageComponent;
  * @author Damian
  */
 public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
+	
+	NewPanelToCompareOneFeautureBtwTwoTVs[] listOfFeautureComparation;
 
     /**
      * Creates new form NewPanelToCompareTwoTv
@@ -35,6 +38,21 @@ public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
 		setTextInFeautureNameLabels(); // look if not only for left side
 		setLeftTV(leftTVset);
 		setRightTV(rightTVset); // check if this method was implement
+				
+		TVAllFeautures allFeautures = new TVAllFeautures();
+		String[] listOfFeautures = allFeautures.getListOfAllFeatures();
+		
+		int feauturesNumber = listOfFeautures.length;
+		jPanel3.setLayout(new GridLayout(feauturesNumber, 1));
+		
+		listOfFeautureComparation = new NewPanelToCompareOneFeautureBtwTwoTVs[feauturesNumber];
+		int index=0;
+        for (String feauture : listOfFeautures) {
+        	NewPanelToCompareOneFeautureBtwTwoTVs tmp = new NewPanelToCompareOneFeautureBtwTwoTVs(listOfFeautures[index]);
+			listOfFeautureComparation[index] = tmp;
+			jPanel3.add(tmp);
+			index++;
+		}
 	}
     
     private void setLeftTV(TVset leftTVset){

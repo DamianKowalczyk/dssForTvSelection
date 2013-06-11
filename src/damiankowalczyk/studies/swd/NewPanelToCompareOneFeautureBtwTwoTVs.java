@@ -9,12 +9,23 @@ package damiankowalczyk.studies.swd;
  * @author Damian
  */
 public class NewPanelToCompareOneFeautureBtwTwoTVs extends javax.swing.JPanel {
+	
+	
 
     /**
      * Creates new form NewPanelToCompareOneFeautureBtwTwoTVs
      */
     public NewPanelToCompareOneFeautureBtwTwoTVs() {
-        initComponents();
+        initComponents();        
+    }
+    
+    public NewPanelToCompareOneFeautureBtwTwoTVs(String label) {
+        this();        
+        jLabel1.setText(label);
+    }
+    
+    public int getSliderValue(){
+    	return jSlider1.getValue();
     }
 
     /**
