@@ -19,14 +19,19 @@ import javax.swing.JLabel;
  * 
  * @author Damian
  */
+
 public class ProgramFrame extends javax.swing.JFrame {
 
 	private final int width = 800;
 	private final int height = 400;
 
-	StartPanel startPanel;	
-	PanelForCompareTVs panelForCompareTVs;	
-		
+	StartPanel startPanel;
+	PanelForCompareTVs panelForCompareTVs;
+
+	float[][] preferenceMatrix;
+	float[][][] matrixesForEachFeauture;
+
+	AhpEngine ahpEngine;
 
 	/**
 	 * Creates new form ProgramFrame
@@ -41,35 +46,47 @@ public class ProgramFrame extends javax.swing.JFrame {
 
 		panelForCompareTVs = new PanelForCompareTVs(this);
 		getContentPane().add(panelForCompareTVs);
-		
+
 		startPanel = new StartPanel(this);
 		panelForCompareTVs.setStartPanel(startPanel);
-		
+
 		getContentPane().add(startPanel);
-		
+
 	}
-	
 
 	private void setFrameIcon() {
 		Toolkit kit = Toolkit.getDefaultToolkit();
 		Image img = kit.getImage("images/google_tv_logo.jpg");
 		setIconImage(img);
-	}	
+	}
 
 	public void setPanelForCompareTVs(PanelForCompareTVs panelForCompareTVs) {
 		this.panelForCompareTVs = panelForCompareTVs;
 	}
 
-
 	public StartPanel getStartPanel() {
 		return startPanel;
 	}
-
 
 	public PanelForCompareTVs getPanelForCompareTVs() {
 		return panelForCompareTVs;
 	}
 
+	public float[][] getPreferenceMatrix() {
+		return preferenceMatrix;
+	}
+
+	public void setPreferenceMatrix(float[][] preferenceMatrix) {
+		this.preferenceMatrix = preferenceMatrix;
+	}
+
+	public float[][][] getMatrixesForEachFeauture() {
+		return matrixesForEachFeauture;
+	}
+
+	public void setMatrixesForEachFeauture(float[][][] matrixesForEachFeauture) {
+		this.matrixesForEachFeauture = matrixesForEachFeauture;
+	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -97,22 +114,23 @@ public class ProgramFrame extends javax.swing.JFrame {
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
-	public void showCompareTVsPanel() {		
-		/*remove(startPanel);*/
+	public void showCompareTVsPanel() {
+		/* remove(startPanel); */
 		startPanel.setVisible(false);
 		panelForCompareTVs.setVisible(true);
 		getContentPane().add(panelForCompareTVs);
 	}
-	
-	public static void setFrameInMiddleOfScreen(JFrame frame){		
-			Toolkit kit = Toolkit.getDefaultToolkit();
-			Dimension screenSize = kit.getScreenSize();
-			int screenWidth = screenSize.width;
-			int screenHeight = screenSize.height;
-			int halfFrameWidth = frame.getSize().width/2;
-			int halfFrameHeight = frame.getSize().height/2;
-			Point p = new Point(screenWidth/2-halfFrameWidth, screenHeight/2-halfFrameHeight);
-			frame.setLocation(p);
+
+	public static void setFrameInMiddleOfScreen(JFrame frame) {
+		Toolkit kit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = kit.getScreenSize();
+		int screenWidth = screenSize.width;
+		int screenHeight = screenSize.height;
+		int halfFrameWidth = frame.getSize().width / 2;
+		int halfFrameHeight = frame.getSize().height / 2;
+		Point p = new Point(screenWidth / 2 - halfFrameWidth, screenHeight / 2
+				- halfFrameHeight);
+		frame.setLocation(p);
 	}
 
 }

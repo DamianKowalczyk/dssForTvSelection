@@ -52,6 +52,23 @@ public class StartPanel extends javax.swing.JPanel {
         setVisible(true);
     }
     
+    private void createPreferencesMatrix() {    	    	
+    	int size = panelsForCompTwoFeatures.size();
+    	float[][] preferenceMatrix = new float[size][size];
+    	
+    	int currentScrollValue;
+    	int index = 0;
+		for (int i = 0; i < size; i++) {
+			for (int j = i+1; j < size; j++) {
+				currentScrollValue = panelsForCompTwoFeatures.get(index).getSliderValue();
+				preferenceMatrix[i][j]= ValueFromScrollParser.parseValue(currentScrollValue);
+				index++;
+			} 
+		}
+	}
+    
+    
+    
     private void customizeAndAddSlidersForFeatures(){
     	//for
     }
