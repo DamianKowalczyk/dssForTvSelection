@@ -60,11 +60,9 @@ public class PanelForCompareTwoFeatures extends javax.swing.JPanel {
         add(jPanelRight, java.awt.BorderLayout.LINE_END);
 
         jSlider1.setMajorTickSpacing(1);
-        jSlider1.setMaximum(9);
-        jSlider1.setMinimum(1);
-        jSlider1.setPaintLabels(true);
+        jSlider1.setMaximum(8);
         jSlider1.setSnapToTicks(true);
-        jSlider1.setValue(5);
+        jSlider1.setValue(4);
         jSlider1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         add(jSlider1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
