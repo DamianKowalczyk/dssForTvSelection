@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,13 +51,7 @@ public class StartPanel extends javax.swing.JPanel {
 		} 
         
         jButton2.addActionListener(new PreferenceSettingsOkButtonListener());
-        
-        /*jPanel1.getLayout().
-        .add(new JButton("this is some button"));*/
-        
-        //jPanelForFeauturePairsList.add(new JButton("this is some button"));
-        //jScrollPane1.setVisible(true);
-        
+                        
         setVisible(true);
     }
     
@@ -74,6 +70,17 @@ public class StartPanel extends javax.swing.JPanel {
 		
 		programFrame.setPreferenceMatrix(preferenceMatrix);
 		AhpEngine.printMatrix(programFrame.getPreferenceMatrix());		
+	}
+    
+    private void checkCohesionCoefficient() {
+		if(!programFrame.ahpEngine.checkConsistencyOfPreferenceMatrix()){
+			JFrame frame = new JFrame("");
+			frame.setSize(400, 200);
+			JOptionPane.showMessageDialog(frame, "This settings could give incorrect results\nIt is recomended to change your settings");
+		} else {
+			//programFrame.panelForCompareTVs.pressedOk();
+			programFrame.showCompareTVsPanel();
+		}
 	}
             
     public StartPanel(ProgramFrame programFrame){
@@ -272,11 +279,11 @@ public class StartPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckBox6ActionPerformed
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    	// TODO add your handling code here:
+    	
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        programFrame.showCompareTVsPanel();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -306,6 +313,7 @@ public class StartPanel extends javax.swing.JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			createPreferencesMatrix();
-		}
+			checkCohesionCoefficient();			
+		}		
 	}
 }

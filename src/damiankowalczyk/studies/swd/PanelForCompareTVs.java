@@ -185,12 +185,18 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
     
     class PressOkListener implements ActionListener {
 
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			createPairsOfTVsToCompare();
-			addToScrollPanel();
-			printPairs();
-		}
+        @Override
+        public void actionPerformed(ActionEvent e) {
+                createPairsOfTVsToCompare();
+                addToScrollPanel();
+                printPairs();
+        }
     	
     }
+    
+    /*public void pressedOk() {
+    	createPairsOfTVsToCompare();
+        addToScrollPanel();
+        printPairs();
+	}*/
 }

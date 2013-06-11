@@ -10,6 +10,8 @@ public class AhpEngine {
 	float[][] c;
 	float[] c0;
 	float[] vectorV;
+	
+	private float consistencyCoefficientLimit = 0.1f;
 
 	private float[] randomConsistencyIndexes = { 0.0f, 0.0f, 0.0f, 0.58f, 0.9f,
 			1.12f, 1.24f, 1.32f, 1.41f, 1.45f, 1.51f };
@@ -112,6 +114,7 @@ public class AhpEngine {
 	private float[] calculateC(float[][] matrix) {
 		float[] c = new float[matrix.length];
 		for (int i = 0; i < matrix.length; i++) {
+			c[i] = 0;
 			for (int j = 0; j < matrix[i].length; j++) {
 				c[i] += matrix[j][i];
 			}
@@ -121,10 +124,10 @@ public class AhpEngine {
 
 	private float[][] normalizeMatrix(float[][] matrix) {
 		float[] c = calculateC(matrix);
-		float[][] result = matrix;
+		float[][] result = new float[matrix.length][matrix.length];
 		for (int i = 0; i < result.length; i++) {
 			for (int j = 0; j < result.length; j++) {
-				result[j][i] /= c[i];
+				result[j][i] = matrix[j][i]/c[i];
 			}
 		}
 		return result;
@@ -136,26 +139,18 @@ public class AhpEngine {
 			for (int j = 0; j < matrix[i].length; j++) {
 				resultVector[i] += matrix[i][j];
 			}
-			resultVector[i] /= matrix[i].length;
+			resultVector[i] /= matrix.length;
 		}
 		return resultVector;
 	}
 
-	private void checkConsistency(float[] c, float[] vecS) {
-		float consistencyRatio;
-		float consistencyIndex = 0.0f;
-		float lambdaMax = 0.0f;
+	private boolean checkConsistency(float[] c, float[] vecS) {				
 		float randomConsistencyIndex = returnRandomConsistencyIndex(c.length);
-		lambdaMax = calculateLambdaMax(c, vecS);
-		consistencyIndex = (lambdaMax - c.length) / (c.length - 1);
-		consistencyRatio = consistencyIndex / randomConsistencyIndex;
-                
-                
-//		if (consistencyRatio > 0.1) {
-//			Log.v("Macierz", " niesp�jna");
-//		} else {
-//			Log.v("Macierz", " ok");
-//		}
+		float lambdaMax = calculateLambdaMax(c, vecS);
+		float consistencyIndex = (lambdaMax - c.length) / (c.length - 1);
+		float consistencyRatio = consistencyIndex / randomConsistencyIndex;
+		
+		return (consistencyRatio<consistencyCoefficientLimit)? true : false;
 	}
 
 	private float calculateLambdaMax(float[] vectorC, float[] vectorS) {
@@ -192,6 +187,12 @@ public class AhpEngine {
 
 	public float[][][] getMatrices() {
 		return matrices;
+	}
+	
+	public boolean checkConsistencyOfPreferenceMatrix(){		
+		c0 = calculateC(preferencesMatrix);		
+		vectorS0 = calculateVectorS(normalizeMatrix(preferencesMatrix));
+		return checkConsistency(c0, vectorS0);
 	}
 
 	//only for tests
