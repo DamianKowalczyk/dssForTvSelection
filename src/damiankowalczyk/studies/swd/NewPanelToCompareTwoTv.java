@@ -7,9 +7,13 @@ package damiankowalczyk.studies.swd;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 import damiankowalczyk.studies.swd.OldPanelToCompareTwoTv.ImageComponent;
 
@@ -43,12 +47,23 @@ public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
     	jLabel8.setText(feauturesOfLeftTV.get(5));    	
     	
     	//draw image
-    	jPanel4.add(new ImageComponent(leftTVset));
+    	Image img = leftTVset.image;
+    	BufferedImage bi = new BufferedImage(
+                150, 150, BufferedImage.TYPE_INT_ARGB);
+            bi.getGraphics().drawImage(img, 0, 0, null);
+            //label.setIcon(new ImageIcon(bi));
+    	
+    	jLabel13.setIcon(new ImageIcon(bi));
+    	
+    	
+    	
     }
     
     private void setRightTV(TVset rightTVset){
     	// empty method for now
     }
+    
+    
     
     private void setTextInFeautureNameLabels(){
     	TVBasicFeatures[] basFeaut= TVBasicFeatures.values();
@@ -83,6 +98,7 @@ public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -116,16 +132,12 @@ public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
 
         jLabel1.setText("jLabel1");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 117, Short.MAX_VALUE)
-        );
+        jPanel4.setMinimumSize(new java.awt.Dimension(150, 140));
+        jPanel4.setPreferredSize(new java.awt.Dimension(200, 140));
+        jPanel4.setLayout(new java.awt.BorderLayout());
+
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jPanel4.add(jLabel13, java.awt.BorderLayout.CENTER);
 
         jLabel3.setText("jLabel3");
 
@@ -154,7 +166,7 @@ public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +213,7 @@ public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8)))
-                .addGap(0, 58, Short.MAX_VALUE))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
 
         add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -315,6 +327,7 @@ public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
