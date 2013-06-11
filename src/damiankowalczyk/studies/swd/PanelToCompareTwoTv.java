@@ -55,6 +55,8 @@ public class PanelToCompareTwoTv extends javax.swing.JPanel {
     	jLabel6.setText(labelsText[4]);
     	jLabel7.setText(labelsText[5]);
     	//for right TV
+    	
+    	
     }
 
 	/**
