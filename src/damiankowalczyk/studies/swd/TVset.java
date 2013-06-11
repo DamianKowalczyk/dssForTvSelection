@@ -19,8 +19,12 @@ public class TVset {
 	
 	public TVset(String[] tvFeatures) {
 		this();
-		setFeautures(tvFeatures);
-		loadImage();
+		setFeautures(tvFeatures);		
+	}
+
+	public TVset(String[] tvFeatures, String pathToImages) {
+		this(tvFeatures);
+		loadImage(pathToImages);
 	}
 
 	private void setFeautures(String[] feaut){
@@ -29,9 +33,11 @@ public class TVset {
 		}
 	}
 	
-	private void loadImage() {
+	private void loadImage(String pathToImages) {
 		try {
-			image = ImageIO.read(new File("/images/TVsets/"+feautures.get(0)+"jpg"));
+			System.out.println(pathToImages+feautures.get(0)+".jpg");
+			image = ImageIO.read(new File(pathToImages+feautures.get(0)+".jpg"));
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -39,9 +45,13 @@ public class TVset {
 	}
 	
 	public static void main(String[] args) {
-		TVset tVset = new TVset();
-		/*tVset.name = "samsung";
-		tVset.size = 50.0f;*/
-		tVset.loadImage();	
+		
 	}
+		
+	@Override
+	public String toString() {		
+		return feautures.get(0).toString();
+	}
+	
+	
 }

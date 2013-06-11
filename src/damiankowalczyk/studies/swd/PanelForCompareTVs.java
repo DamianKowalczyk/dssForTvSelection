@@ -22,9 +22,13 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	private StartPanel startPanel;
 		
 	TVset[][] pairsOfTVtoCompare;
-	PanelToCompareTwoTv[] panelsOfComparedTVs;
+	NewPanelToCompareTwoTv[] panelsOfComparedTVs;
 
-	
+	private PressOkListener okListener = new PressOkListener();
+
+	public PressOkListener getOkListener() {
+		return okListener;
+	}
 
 	/**
 	 * Creates new form PanelForCompareTVs
@@ -36,8 +40,12 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 
 	public PanelForCompareTVs(ProgramFrame programFrame) {
 		this();
-		this.programFrame = programFrame;		 
+		this.programFrame = programFrame;		
 	}
+	
+	/*private void setListenerToFirstOkButtonInStartPanel(){
+		startPanel.getJButton1().addActionListener();
+	}*/
 
 	private void createPairsOfTVsToCompare() {		
 		ArrayList<TVset> allFilteredTVs = new TVsetsForCompare().getFilteredTVs();
@@ -46,8 +54,8 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 		pairsOfTVtoCompare = new TVset[pairsOfTVsToCompareNumber][2];
 		
 		int index = 0;
-		for (int i = 0; i < allFilteredTVs.size(); i++) {
-			for (int j = 0; j < allFilteredTVs.size()-1; j++) {
+		for (int i = 0; i < allFilteredTVs.size()-1; i++) {
+			for (int j = i+1; j < allFilteredTVs.size(); j++) {
 				pairsOfTVtoCompare[index][0]= allFilteredTVs.get(i);
 				pairsOfTVtoCompare[index][1]= allFilteredTVs.get(j);
 				index++;
@@ -58,9 +66,12 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	private void addToScrollPanel() {
 		jPanelForCompareTwoTVList.setLayout(new GridLayout(pairsOfTVtoCompare.length, 1));
 		
-		panelsOfComparedTVs = new PanelToCompareTwoTv[pairsOfTVtoCompare.length];
+		panelsOfComparedTVs = new NewPanelToCompareTwoTv[pairsOfTVtoCompare.length];
+		NewPanelToCompareTwoTv tmpPanel;
 		for (int i = 0; i < pairsOfTVtoCompare.length; i++) {
-			panelsOfComparedTVs[i]= new PanelToCompareTwoTv(pairsOfTVtoCompare[i][0], pairsOfTVtoCompare[i][1]);
+			tmpPanel = new NewPanelToCompareTwoTv(pairsOfTVtoCompare[i][0], pairsOfTVtoCompare[i][1]);
+			panelsOfComparedTVs[i]= tmpPanel;
+			jPanelForCompareTwoTVList.add(tmpPanel);
 		}
 	}
 
@@ -78,6 +89,12 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 		String[] resultVector = { "sony", "philips", "sontax", "sharp", "LG",
 				"other" };
 		return resultVector;
+	}
+	
+	private void printPairs() {
+		for (int i = 0; i < pairsOfTVtoCompare.length; i++) {
+			System.out.println(pairsOfTVtoCompare[i][0]+"  and  "+pairsOfTVtoCompare[i][1]);
+		}
 	}
 
 	/**
@@ -166,11 +183,13 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     
-    class pressOkListener implements ActionListener {
+    class PressOkListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			createPairsOfTVsToCompare();			
+			createPairsOfTVsToCompare();
+			addToScrollPanel();
+			printPairs();
 		}
     	
     }

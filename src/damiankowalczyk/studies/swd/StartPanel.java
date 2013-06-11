@@ -59,8 +59,12 @@ public class StartPanel extends javax.swing.JPanel {
     public StartPanel(ProgramFrame programFrame){
     	this();
     	this.programFrame = programFrame;
+    	setOkButtonListener();
     }
     
+    private void setOkButtonListener() {
+		jButton1.addActionListener(programFrame.getPanelForCompareTVs().getOkListener());
+	}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -272,4 +276,9 @@ public class StartPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanelForFeauturePairsList;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+
+	public JButton getJButton1() {
+		return jButton1;		
+	}
 }

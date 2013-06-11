@@ -15,16 +15,16 @@ import javax.swing.JComponent;
  *
  * @author Damian
  */
-public class PanelToCompareTwoTv extends javax.swing.JPanel {
+public class OldPanelToCompareTwoTv extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelToCompareTwoTv
      */
-    public PanelToCompareTwoTv() {
+    public OldPanelToCompareTwoTv() {
         initComponents();                
     }
 
-    public PanelToCompareTwoTv(TVset tVset, TVset tVset2) {
+    public OldPanelToCompareTwoTv(TVset tVset, TVset tVset2) {
 		this();		
 	}
     
