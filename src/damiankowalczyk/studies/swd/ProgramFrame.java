@@ -78,6 +78,7 @@ public class ProgramFrame extends javax.swing.JFrame {
 
 	public void setPreferenceMatrix(float[][] preferenceMatrix) {
 		this.preferenceMatrix = preferenceMatrix;
+		
 	}
 
 	public float[][][] getMatrixesForEachFeauture() {

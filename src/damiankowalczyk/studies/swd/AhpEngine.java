@@ -14,6 +14,10 @@ public class AhpEngine {
 	private float[] randomConsistencyIndexes = { 0.0f, 0.0f, 0.0f, 0.58f, 0.9f,
 			1.12f, 1.24f, 1.32f, 1.41f, 1.45f, 1.51f };
 
+	
+	public AhpEngine() {		
+	}
+	
 	public AhpEngine(float[][] preferencesMatrix) {
 		this.preferencesMatrix = preferencesMatrix;
 	}	
@@ -174,5 +178,27 @@ public class AhpEngine {
 
 	public void setMatrices(float[][][] matrices) {
 		this.matrices = matrices;
+	}
+	
+	public float[][] getPreferencesMatrix() {
+		return preferencesMatrix;
+	}
+
+	public void setPreferencesMatrix(float[][] preferencesMatrix) {
+		this.preferencesMatrix = preferencesMatrix;
+	}
+
+	public float[][][] getMatrices() {
+		return matrices;
+	}
+
+	//only for tests
+	public static void printMatrix(float[][] matrix) {
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix.length; j++) {
+				System.out.format("%.2f  ", matrix[i][j]);
+			}
+			System.out.println();
+		}
 	}
 }

@@ -5,6 +5,8 @@
 package damiankowalczyk.studies.swd;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -19,6 +21,7 @@ public class StartPanel extends javax.swing.JPanel {
     
     private ArrayList<PanelForCompareTwoFeatures> panelsForCompTwoFeatures; 
 	
+    private int numberOfFeautures;
 	
 	/**
      * Creates new form StartPanel
@@ -27,6 +30,8 @@ public class StartPanel extends javax.swing.JPanel {
     	initComponents();
     	    	
     	TVAllFeautures tvAllFeatures = new TVAllFeautures();
+    	numberOfFeautures = tvAllFeatures.listOfAllFeatures.length;
+    	
     	String[][] pairsOfFeauture = tvAllFeatures.getAllPossiblePairs();
     	
         int featuresPairsNumber = tvAllFeatures.getAllPossiblePairs().length;
@@ -43,6 +48,8 @@ public class StartPanel extends javax.swing.JPanel {
 			jPanelForFeauturePairsList.add(tmp);
 		} 
         
+        jButton2.addActionListener(new PreferenceSettingsOkButtonListener());
+        
         /*jPanel1.getLayout().
         .add(new JButton("this is some button"));*/
         
@@ -52,27 +59,23 @@ public class StartPanel extends javax.swing.JPanel {
         setVisible(true);
     }
     
-    private void createPreferencesMatrix() {    	    	
-    	int size = panelsForCompTwoFeatures.size();
-    	float[][] preferenceMatrix = new float[size][size];
+    private void createPreferencesMatrix() {
+    	float[][] preferenceMatrix = new float[numberOfFeautures][numberOfFeautures];
     	
     	int currentScrollValue;
     	int index = 0;
-		for (int i = 0; i < size; i++) {
-			for (int j = i+1; j < size; j++) {
+		for (int i = 0; i < numberOfFeautures-1; i++) {
+			for (int j = i+1; j < numberOfFeautures; j++) {				
 				currentScrollValue = panelsForCompTwoFeatures.get(index).getSliderValue();
 				preferenceMatrix[i][j]= ValueFromScrollParser.parseValue(currentScrollValue);
 				index++;
 			} 
 		}
+		
+		programFrame.setPreferenceMatrix(preferenceMatrix);
+		AhpEngine.printMatrix(preferenceMatrix);
 	}
-    
-    
-    
-    private void customizeAndAddSlidersForFeatures(){
-    	//for
-    }
-    
+            
     public StartPanel(ProgramFrame programFrame){
     	this();
     	this.programFrame = programFrame;
@@ -297,5 +300,12 @@ public class StartPanel extends javax.swing.JPanel {
 
 	public JButton getJButton1() {
 		return jButton1;		
+	}
+	
+	class PreferenceSettingsOkButtonListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			createPreferencesMatrix();
+		}
 	}
 }
