@@ -22,8 +22,8 @@ import javax.swing.JLabel;
 
 public class ProgramFrame extends javax.swing.JFrame {
 
-	private final int width = 800;
-	private final int height = 400;
+	private final int width = 1000;
+	private final int height = 600;
 
 	StartPanel startPanel;
 	PanelForCompareTVs panelForCompareTVs;
@@ -31,7 +31,7 @@ public class ProgramFrame extends javax.swing.JFrame {
 	float[][] preferenceMatrix;
 	float[][][] matrixesForEachFeauture;
 
-	AhpEngine ahpEngine;
+	AhpEngine ahpEngine= new AhpEngine();
 
 	/**
 	 * Creates new form ProgramFrame
@@ -73,20 +73,19 @@ public class ProgramFrame extends javax.swing.JFrame {
 	}
 
 	public float[][] getPreferenceMatrix() {
-		return preferenceMatrix;
+		return ahpEngine.getPreferencesMatrix();
 	}
 
-	public void setPreferenceMatrix(float[][] preferenceMatrix) {
-		this.preferenceMatrix = preferenceMatrix;
-		
+	public void setPreferenceMatrix(float[][] preferenceMatrix) {		
+		ahpEngine.setPreferencesMatrix(preferenceMatrix);		
 	}
 
 	public float[][][] getMatrixesForEachFeauture() {
-		return matrixesForEachFeauture;
+		return ahpEngine.getMatrices();
 	}
 
 	public void setMatrixesForEachFeauture(float[][][] matrixesForEachFeauture) {
-		this.matrixesForEachFeauture = matrixesForEachFeauture;
+		ahpEngine.setMatrices(matrixesForEachFeauture);
 	}
 
 	/**

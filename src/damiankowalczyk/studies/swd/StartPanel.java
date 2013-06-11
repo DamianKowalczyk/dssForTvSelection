@@ -73,7 +73,7 @@ public class StartPanel extends javax.swing.JPanel {
 		}
 		
 		programFrame.setPreferenceMatrix(preferenceMatrix);
-		AhpEngine.printMatrix(preferenceMatrix);
+		AhpEngine.printMatrix(programFrame.getPreferenceMatrix());		
 	}
             
     public StartPanel(ProgramFrame programFrame){

@@ -186,6 +186,8 @@ public class AhpEngine {
 
 	public void setPreferencesMatrix(float[][] preferencesMatrix) {
 		this.preferencesMatrix = preferencesMatrix;
+		this.addOnes(this.preferencesMatrix);
+		this.fillMatrix(this.preferencesMatrix);		
 	}
 
 	public float[][][] getMatrices() {
@@ -200,5 +202,6 @@ public class AhpEngine {
 			}
 			System.out.println();
 		}
+		System.out.println("\n");
 	}
 }
