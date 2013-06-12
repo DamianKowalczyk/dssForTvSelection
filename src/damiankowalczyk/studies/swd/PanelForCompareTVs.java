@@ -210,9 +210,23 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
-		JFrame frame = new JFrame("Suggested, best choices in order:");
-		frame.setSize(400, 200);
-		JOptionPane.showMessageDialog(frame, getDecisionOrders());
+		createMatrixesOfComparationForAllFeatures();
+		
+		boolean[] consistencyResultForEachFeature = programFrame.ahpEngine.checkConsistencyOfAllFeatureMatrixes();
+		boolean allConsistencyCoefficientsOk = true;
+		for (boolean b : consistencyResultForEachFeature) {
+			allConsistencyCoefficientsOk &= b;
+		}
+		
+		if (allConsistencyCoefficientsOk) {
+			JFrame frame = new JFrame("Suggested, best choices in order:");
+			frame.setSize(400, 200);
+			JOptionPane.showMessageDialog(frame, getDecisionOrders());
+		} else {
+			JFrame frame = new JFrame("Warning");
+			frame.setSize(400, 200);
+			JOptionPane.showMessageDialog(frame, "This settings could give incorrect results\nIt is recomended to change your settings");
+		}
 	}
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {

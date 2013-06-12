@@ -173,9 +173,11 @@ public class AhpEngine {
 
 	public void setMatrixes(float[][][] matrixes) {
 		this.matrixes = matrixes;
-		for (int i = 0; i < matrixes.length; i++) {
-			fillMatrix(matrixes[i]);			
+		for (int i = 0; i < this.matrixes.length; i++) {
+			fillMatrix(this.matrixes[i]);			
 		}
+		
+		printAllFeatureMatrixes(this.matrixes);
 	}
 	
 	
@@ -215,6 +217,12 @@ public class AhpEngine {
 		return consistencyOfAllFeatureMatrixes;
 	}
 
+	public static void printAllFeatureMatrixes(float[][][] matrixes){
+		for (int i = 0; i < matrixes.length; i++) {
+			printMatrix(matrixes[i]);			
+		}
+	}
+	
 	//only for tests
 	public static void printMatrix(float[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
