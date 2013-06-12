@@ -64,6 +64,9 @@ public class AhpEngine {
 	}
 	
 	public int[] calculateOrder(){
+		//float[] gradeForEachTV = calculateVectorR(, s0);
+		
+		
 		return null;
 	}
 
@@ -79,6 +82,8 @@ public class AhpEngine {
 		}
 		return result;
 	}
+	
+	
 
 	private float[][] fillMatrix(float[][] matrix) {
 		float[][] result;
