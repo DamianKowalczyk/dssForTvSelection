@@ -2,28 +2,27 @@ package damiankowalczyk.studies.swd;
 
 public class AhpEngine {
 	float[][] preferencesMatrix;
-	float[][][] matrixes;	// all matrixes as 
+	float[][][] matrixes; // all matrixes as
 	float[][] v;
 	float vecC[];
 	float[] vectorS0;
 	float[][] vectors;
 	float[][] c;
 	float[] c0;
-	float[] vectorV;
-	
+	float[] vectorR;
+
 	private float consistencyCoefficientLimit = 0.1f;
 
-	private float[] randomConsistencyIndexes = { 0.0f, 0.0f, 0.0f, 0.58f, 0.9f,
-			1.12f, 1.24f, 1.32f, 1.41f, 1.45f, 1.51f };
+	private float[] randomConsistencyIndexes = { 10.0f, 10.0f, 10.0f, 0.58f, 0.9f,
+			1.12f, 1.24f, 1.32f, 1.41f, 1.45f, 1.51f };	// for matrix size <= 
 
-	
-	public AhpEngine() {		
+	public AhpEngine() {
 	}
-	
+
 	public AhpEngine(float[][] preferencesMatrix) {
 		this.preferencesMatrix = preferencesMatrix;
-	}	
-	
+	}
+
 	public AhpEngine(float[][] preferencesMatrix, float[][]... matrix) {
 		this(preferencesMatrix);
 		this.matrixes = matrix;
@@ -55,7 +54,7 @@ public class AhpEngine {
 
 		}
 
-		vectorV = calculateVectorV(fillMatrixV(vectors), vectorS0);
+		vectorR = calculateVectorR(fillMatrixV(vectors), vectorS0);
 
 		// for (int i=0; i<vectorV.length;i++){
 
@@ -63,13 +62,20 @@ public class AhpEngine {
 		// }
 
 	}
+	
+	public int[] calculateOrder(){
+		return null;
+	}
 
-	private float[] calculateVectorV(float[][] v, float[] s0) {
+	private float[] calculateVectorR(float[][] v, float[] s0) {
 		float[] result = new float[s0.length];
+		float sum;
 		for (int i = 0; i < s0.length; i++) {
+			sum = 0.0f;
 			for (int j = 0; j < v.length; j++) {
-				result[i] += v[i][j] * s0[j];
+				sum += v[i][j] * s0[j];
 			}
+			result[i] = sum;
 		}
 		return result;
 	}
@@ -93,23 +99,7 @@ public class AhpEngine {
 			v[i] = s[i];
 		}
 		return v;
-	}
-
-	/*private void showValues() {
-		System.out.println("Normalized Matrix: ");
-		for (int i = 0; i < preferencesMatrix.length; i++) {
-			for (int j = 0; j < preferencesMatrix[i].length; j++) {
-				System.out.print(preferencesMatrix[i][j] + " ");
-			}
-			System.out.println("");
-		}
-		System.out.println("Preference Vector: ");
-
-		for (int i = 0; i < vectorS0.length; i++) {
-			System.out.print(vectorS0[i]);
-		}
-		System.out.println("");
-	}*/
+	}	
 
 	private float[] calculateC(float[][] matrix) {
 		float[] c = new float[matrix.length];
@@ -120,37 +110,39 @@ public class AhpEngine {
 			}
 		}
 		return c;
-	}
+	} // checked
 
 	private float[][] normalizeMatrix(float[][] matrix) {
 		float[] c = calculateC(matrix);
 		float[][] result = new float[matrix.length][matrix.length];
 		for (int i = 0; i < result.length; i++) {
 			for (int j = 0; j < result.length; j++) {
-				result[j][i] = matrix[j][i]/c[i];
+				result[j][i] = matrix[j][i] / c[i];
 			}
 		}
 		return result;
-	}
+	} // checked
 
 	private float[] calculateVectorS(float[][] matrix) {
 		float[] resultVector = new float[matrix.length];
+		float sumValuesInRow;
 		for (int i = 0; i < matrix.length; i++) {
+			sumValuesInRow = 0.0f;
 			for (int j = 0; j < matrix[i].length; j++) {
-				resultVector[i] += matrix[i][j];
+				sumValuesInRow += matrix[i][j];
 			}
-			resultVector[i] /= matrix.length;
+			resultVector[i] = sumValuesInRow / matrix.length;
 		}
 		return resultVector;
-	}
+	} // checked
 
-	private boolean checkConsistency(float[] c, float[] vecS) {				
+	private boolean checkConsistency(float[] c, float[] vecS) {
 		float randomConsistencyIndex = returnRandomConsistencyIndex(c.length);
 		float lambdaMax = calculateLambdaMax(c, vecS);
 		float consistencyIndex = (lambdaMax - c.length) / (c.length - 1);
 		float consistencyRatio = consistencyIndex / randomConsistencyIndex;
-		
-		return (consistencyRatio<consistencyCoefficientLimit)? true : false;
+
+		return (consistencyRatio < consistencyCoefficientLimit) ? true : false;
 	}
 
 	private float calculateLambdaMax(float[] vectorC, float[] vectorS) {
@@ -159,7 +151,7 @@ public class AhpEngine {
 			result += vectorC[i] * vectorS[i];
 		}
 		return result;
-	}
+	} // checked
 
 	private void addOnes(float[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
@@ -174,56 +166,54 @@ public class AhpEngine {
 	public void setMatrixes(float[][][] matrixes) {
 		this.matrixes = matrixes;
 		for (int i = 0; i < this.matrixes.length; i++) {
-			fillMatrix(this.matrixes[i]);			
+			fillMatrix(this.matrixes[i]);
 		}
-		
+
 		printAllFeatureMatrixes(this.matrixes);
 	}
-	
-	
-	
+
 	public float[][] getPreferencesMatrix() {
 		return preferencesMatrix;
 	}
 
 	public void setPreferencesMatrix(float[][] preferencesMatrix) {
-		this.preferencesMatrix = preferencesMatrix;		
-		this.fillMatrix(this.preferencesMatrix);		
+		this.preferencesMatrix = preferencesMatrix;
+		this.fillMatrix(this.preferencesMatrix);
 	}
 
 	public float[][][] getMatrixes() {
 		return matrixes;
 	}
-	
-	public boolean checkConsistencyOfPreferenceMatrix(){		
-		c0 = calculateC(preferencesMatrix);		
+
+	public boolean checkConsistencyOfPreferenceMatrix() {
+		c0 = calculateC(preferencesMatrix);
 		vectorS0 = calculateVectorS(normalizeMatrix(preferencesMatrix));
 		return checkConsistency(c0, vectorS0);
 	}
-	
-	public boolean[] checkConsistencyOfAllFeatureMatrixes(){
+
+	public boolean[] checkConsistencyOfAllFeatureMatrixes() {
 		boolean[] consistencyOfAllFeatureMatrixes = new boolean[matrixes.length];
-		
-		float[] c; 
+
+		float[] c;
 		vectors = new float[matrixes.length][];
-		
+
 		for (int i = 0; i < matrixes.length; i++) {
-			c = calculateC(matrixes[i]);			
-			vectors[i] = calculateVectorS(normalizeMatrix(matrixes[i]));			
-			
+			c = calculateC(matrixes[i]);
+			vectors[i] = calculateVectorS(normalizeMatrix(matrixes[i]));
+
 			consistencyOfAllFeatureMatrixes[i] = checkConsistency(c, vectors[i]);
 		}
-		
+
 		return consistencyOfAllFeatureMatrixes;
 	}
 
-	public static void printAllFeatureMatrixes(float[][][] matrixes){
+	public static void printAllFeatureMatrixes(float[][][] matrixes) {
 		for (int i = 0; i < matrixes.length; i++) {
-			printMatrix(matrixes[i]);			
+			printMatrix(matrixes[i]);
 		}
 	}
-	
-	//only for tests
+
+	// only for tests
 	public static void printMatrix(float[][] matrix) {
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix.length; j++) {

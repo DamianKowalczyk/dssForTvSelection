@@ -25,6 +25,8 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	NewPanelToCompareTwoTv[] panelsOfComparedTVs;	
 
 	private PressOkListener okListener = new PressOkListener();
+	
+	private String[] allFeaturesList;
 
 	public PressOkListener getOkListener() {
 		return okListener;
@@ -32,7 +34,8 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	
 	private void createMatrixesOfComparationForAllFeatures(){
 		TVAllFeautures allFeatures = new TVAllFeautures();
-		int matrixNumber = allFeatures.getListOfAllFeatures().length;
+		allFeaturesList = allFeatures.getListOfAllFeatures();
+		int matrixNumber = allFeaturesList.length;
 		
 		float[][][] matrixesOfComparationForAllFeatures = new float[matrixNumber][][];		
 		for (int i = 0; i < matrixNumber; i++) {
@@ -213,19 +216,23 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 		createMatrixesOfComparationForAllFeatures();
 		
 		boolean[] consistencyResultForEachFeature = programFrame.ahpEngine.checkConsistencyOfAllFeatureMatrixes();
-		boolean allConsistencyCoefficientsOk = true;
-		for (boolean b : consistencyResultForEachFeature) {
-			allConsistencyCoefficientsOk &= b;
+		String featureToCorrect = "";
+		int index = 0;
+		for (boolean currentFeatureCoherent : consistencyResultForEachFeature) {
+			if (!currentFeatureCoherent) {
+				featureToCorrect+= allFeaturesList[index] + "; ";
+			}
+			index++;
 		}
 		
-		if (allConsistencyCoefficientsOk) {
+		if (featureToCorrect.equals("")) { // there is nothing to correct
 			JFrame frame = new JFrame("Suggested, best choices in order:");
 			frame.setSize(400, 200);
 			JOptionPane.showMessageDialog(frame, getDecisionOrders());
 		} else {
 			JFrame frame = new JFrame("Warning");
 			frame.setSize(400, 200);
-			JOptionPane.showMessageDialog(frame, "This settings could give incorrect results\nIt is recomended to change your settings");
+			JOptionPane.showMessageDialog(frame, "This settings could give incorrect results\nPlease change your settings:\n"+featureToCorrect);
 		}
 	}
 
