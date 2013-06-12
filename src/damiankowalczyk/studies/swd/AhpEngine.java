@@ -19,15 +19,6 @@ public class AhpEngine {
 	public AhpEngine() {
 	}
 
-	public AhpEngine(float[][] preferencesMatrix) {
-		this.preferencesMatrix = preferencesMatrix;
-	}
-
-	public AhpEngine(float[][] preferencesMatrix, float[][]... matrix) {
-		this(preferencesMatrix);
-		this.matrixes = matrix;
-	}
-
 	public void calculate() {
 		preferencesMatrix = fillMatrix(preferencesMatrix);
 		// c0=new float[preferencesMatrix.length];
@@ -51,15 +42,9 @@ public class AhpEngine {
 			System.out.println(vectors[i][0]);
 
 			checkConsistency(c[i], vectors[i]);
-
 		}
 
 		vectorR = calculateVectorR(fillMatrixV(vectors), vectorS0);
-
-		// for (int i=0; i<vectorV.length;i++){
-
-		// System.out.println("wektor w pozycja "+i+": "+vectorV[i]);
-		// }
 
 	}
 	
