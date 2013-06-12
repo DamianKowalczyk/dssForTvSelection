@@ -2,7 +2,7 @@ package damiankowalczyk.studies.swd;
 
 public class AhpEngine {
 	float[][] preferencesMatrix;
-	float[][][] matrices;	// all matrixes as 
+	float[][][] matrixes;	// all matrixes as 
 	float[][] v;
 	float vecC[];
 	float[] vectorS0;
@@ -26,7 +26,7 @@ public class AhpEngine {
 	
 	public AhpEngine(float[][] preferencesMatrix, float[][]... matrix) {
 		this(preferencesMatrix);
-		this.matrices = matrix;
+		this.matrixes = matrix;
 	}
 
 	public void calculate() {
@@ -37,17 +37,17 @@ public class AhpEngine {
 		vectorS0 = calculateVectorS(normalizeMatrix(preferencesMatrix));
 		checkConsistency(c0, vectorS0);
 
-		c = new float[matrices.length][matrices[0].length];
-		vectors = new float[matrices.length][matrices[0].length];
+		c = new float[matrixes.length][matrixes[0].length];
+		vectors = new float[matrixes.length][matrixes[0].length];
 
-		for (int i = 0; i < matrices.length; i++) {
+		for (int i = 0; i < matrixes.length; i++) {
 			//
-			matrices[i] = fillMatrix(matrices[i]);
+			matrixes[i] = fillMatrix(matrixes[i]);
 
-			System.out.println(matrices[i][0][2]);
-			c[i] = calculateC(matrices[i]);
+			System.out.println(matrixes[i][0][2]);
+			c[i] = calculateC(matrixes[i]);
 			System.out.println(c[i][0]);
-			vectors[i] = calculateVectorS(normalizeMatrix(matrices[i]));
+			vectors[i] = calculateVectorS(normalizeMatrix(matrixes[i]));
 			System.out.println("s" + i + ": ");
 			System.out.println(vectors[i][0]);
 
@@ -95,7 +95,7 @@ public class AhpEngine {
 		return v;
 	}
 
-	private void showValues() {
+	/*private void showValues() {
 		System.out.println("Normalized Matrix: ");
 		for (int i = 0; i < preferencesMatrix.length; i++) {
 			for (int j = 0; j < preferencesMatrix[i].length; j++) {
@@ -109,7 +109,7 @@ public class AhpEngine {
 			System.out.print(vectorS0[i]);
 		}
 		System.out.println("");
-	}
+	}*/
 
 	private float[] calculateC(float[][] matrix) {
 		float[] c = new float[matrix.length];
@@ -171,28 +171,48 @@ public class AhpEngine {
 		return randomConsistencyIndexes[sizeOfMatrix];
 	}
 
-	public void setMatrices(float[][][] matrices) {
-		this.matrices = matrices;
+	public void setMatrixes(float[][][] matrixes) {
+		this.matrixes = matrixes;
+		for (int i = 0; i < matrixes.length; i++) {
+			fillMatrix(matrixes[i]);			
+		}
 	}
+	
+	
 	
 	public float[][] getPreferencesMatrix() {
 		return preferencesMatrix;
 	}
 
 	public void setPreferencesMatrix(float[][] preferencesMatrix) {
-		this.preferencesMatrix = preferencesMatrix;
-		this.addOnes(this.preferencesMatrix);
+		this.preferencesMatrix = preferencesMatrix;		
 		this.fillMatrix(this.preferencesMatrix);		
 	}
 
-	public float[][][] getMatrices() {
-		return matrices;
+	public float[][][] getMatrixes() {
+		return matrixes;
 	}
 	
 	public boolean checkConsistencyOfPreferenceMatrix(){		
 		c0 = calculateC(preferencesMatrix);		
 		vectorS0 = calculateVectorS(normalizeMatrix(preferencesMatrix));
 		return checkConsistency(c0, vectorS0);
+	}
+	
+	public boolean[] checkConsistencyOfAllFeatureMatrixes(){
+		boolean[] consistencyOfAllFeatureMatrixes = new boolean[matrixes.length];
+		
+		float[] c; 
+		vectors = new float[matrixes.length][];
+		
+		for (int i = 0; i < matrixes.length; i++) {
+			c = calculateC(matrixes[i]);			
+			vectors[i] = calculateVectorS(normalizeMatrix(matrixes[i]));			
+			
+			consistencyOfAllFeatureMatrixes[i] = checkConsistency(c, vectors[i]);
+		}
+		
+		return consistencyOfAllFeatureMatrixes;
 	}
 
 	//only for tests

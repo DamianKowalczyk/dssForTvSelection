@@ -22,13 +22,56 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	private StartPanel startPanel;
 		
 	TVset[][] pairsOfTVtoCompare;
-	NewPanelToCompareTwoTv[] panelsOfComparedTVs;
+	NewPanelToCompareTwoTv[] panelsOfComparedTVs;	
 
 	private PressOkListener okListener = new PressOkListener();
 
 	public PressOkListener getOkListener() {
 		return okListener;
 	}
+	
+	private void createMatrixesOfComparationForAllFeatures(){
+		TVAllFeautures allFeatures = new TVAllFeautures();
+		int matrixNumber = allFeatures.getListOfAllFeatures().length;
+		
+		float[][][] matrixesOfComparationForAllFeatures = new float[matrixNumber][][];		
+		for (int i = 0; i < matrixNumber; i++) {
+			matrixesOfComparationForAllFeatures[i] = getMatrixForFeature(i);
+		} 
+		
+		programFrame.setMatrixesForEachFeature(matrixesOfComparationForAllFeatures);
+	}
+	
+
+	private float[][] getMatrixForFeature(int feautureNumber) {
+		int numberOfTVs = calculateNumberOfDifferentTVs();		
+		int currentSliderValue;
+		float[] parsetValuesFromSlidersInOrder = new float[pairsOfTVtoCompare.length];
+		
+		int currentIndex = 0;
+		for (NewPanelToCompareTwoTv panToComp : panelsOfComparedTVs) {
+			currentSliderValue = panToComp.getValueFromSliderAtIndex(feautureNumber);
+			parsetValuesFromSlidersInOrder[currentIndex] = ValueFromScrollParser.parseValue(currentSliderValue);
+			currentIndex++;
+		}
+		
+		float[][] matrixOfFeature = new float[numberOfTVs][numberOfTVs];
+		currentIndex = 0;
+		for (int i = 0; i < numberOfTVs-1; i++) {
+			for (int j = i+1; j < numberOfTVs; j++) {				
+				matrixOfFeature[i][j] = parsetValuesFromSlidersInOrder[currentIndex];				
+				currentIndex++;
+			} 
+		}		
+		
+		return matrixOfFeature;
+	}
+	
+	private int calculateNumberOfDifferentTVs(){
+		int result = (int) (1+ Math.sqrt((1+8*pairsOfTVtoCompare.length)));
+		return result/=2;		
+	}
+	                                            
 
 	/**
 	 * Creates new form PanelForCompareTVs

@@ -81,11 +81,11 @@ public class ProgramFrame extends javax.swing.JFrame {
 	}
 
 	public float[][][] getMatrixesForEachFeauture() {
-		return ahpEngine.getMatrices();
+		return ahpEngine.getMatrixes();
 	}
 
-	public void setMatrixesForEachFeauture(float[][][] matrixesForEachFeauture) {
-		ahpEngine.setMatrices(matrixesForEachFeauture);
+	public void setMatrixesForEachFeature(float[][][] matrixesForEachFeauture) {
+		ahpEngine.setMatrixes(matrixesForEachFeauture);
 	}
 
 	/**

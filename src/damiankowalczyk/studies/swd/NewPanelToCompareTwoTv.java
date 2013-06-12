@@ -55,6 +55,10 @@ public class NewPanelToCompareTwoTv extends javax.swing.JPanel {
 		}
 	}
     
+    public int getValueFromSliderAtIndex(int index){
+    	return listOfFeautureComparation[index].getSliderValue();
+    }
+    
     private void setLeftTV(TVset leftTVset){
     	ArrayList<String> feauturesOfLeftTV= leftTVset.feautures;
     	jLabel1.setText(feauturesOfLeftTV.get(0)); // set name
