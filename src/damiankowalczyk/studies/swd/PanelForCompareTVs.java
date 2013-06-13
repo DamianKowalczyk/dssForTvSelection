@@ -27,6 +27,7 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	private PressOkListener okListener = new PressOkListener();
 	
 	private String[] allFeaturesList;
+	ArrayList<TVset> allFilteredTVs;
 
 	public PressOkListener getOkListener() {
 		return okListener;
@@ -94,7 +95,7 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	}*/
 
 	private void createPairsOfTVsToCompare() {		
-		ArrayList<TVset> allFilteredTVs = new TVsetsForCompare().getFilteredTVs();
+		allFilteredTVs = new TVsetsForCompare().getFilteredTVs();
 		int pairsOfTVsToCompareNumber = (allFilteredTVs.size()*(allFilteredTVs.size()-1))/2;
 		
 		pairsOfTVtoCompare = new TVset[pairsOfTVsToCompareNumber][2];
@@ -132,8 +133,19 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	}
 
 	private String[] getDecisionOrders() {
-		String[] resultVector = { "sony", "philips", "sontax", "sharp", "LG",
-				"other" };
+		/*String[] resultVector = { "sony", "philips", "sontax", "sharp", "LG",
+				"other" };*/
+		int[] indexesOrder = programFrame.ahpEngine.calculateOrderWhenMatrixCoherent();
+		String[] resultVector = new String[allFilteredTVs.size()];
+		
+		int currentTV_Index;
+		String currentTVname;
+		for (int i = 0; i < indexesOrder.length; i++) {
+			currentTV_Index = indexesOrder[i];
+			currentTVname = allFilteredTVs.get(currentTV_Index).feautures.get(0);	// name is on the 0 position of features
+			resultVector[i] = currentTVname;
+		}
+		
 		return resultVector;
 	}
 	

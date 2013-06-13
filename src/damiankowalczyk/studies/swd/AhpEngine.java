@@ -24,7 +24,7 @@ public class AhpEngine {
 	
 	public int[] calculateOrderWhenMatrixCoherent() {
 		float[] vectorS0 = calculateVectorS(normalizeMatrix(preferencesMatrix));
-		float[][] vectorsS = new float[preferencesMatrix.length][];
+		float[][] vectorsS = new float[preferencesMatrix.length][];	// as many as many features we have
 
 		for (int i = 0; i < matrixes.length; i++) {
 			vectorsS[i] = calculateVectorS(normalizeMatrix(matrixes[i]));
@@ -34,6 +34,18 @@ public class AhpEngine {
 
 		return indexesInOrderNewer(vectorR);
 	}
+	
+	/*float[] vectorS;
+	vectorS = ahpEngine.calculateVectorS(prefMatrix);
+	
+	float[][] vectorsS = new float[otherMatrixes.length][];
+	for (int i = 0; i < otherMatrixes.length; i++) {
+		vectorsS[i] = ahpEngine.calculateVectorS(otherMatrixes[i]);		
+	}	
+	
+	float[] vectorR =  ahpEngine.calculateVectorR(vectorsS, vectorS);
+	int[] indexesInOrder;
+	indexesInOrder = ahpEngine.indexesInOrderNewer(vectorR);*/
 	
 	private int[] indexesInOrderNewer(float[] vectorR) {		
 		PairsValueAndIndex[] pairs = new PairsValueAndIndex[vectorR.length];
