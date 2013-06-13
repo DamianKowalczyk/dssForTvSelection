@@ -1,7 +1,9 @@
 package damiankowalczyk.studies.swd;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
@@ -59,10 +61,27 @@ public class AhpEngine {
 
 		float[] vectorR = calculateVectorR(vectorsS, vectorS0);
 
-		return indexesInOrderNew(vectorR);
+		return indexesInOrderNewer(vectorR);
 	}
 	
-	private int[] indexesInOrderNew(float[] vectorR) {		
+	private int[] indexesInOrderNewer(float[] vectorR) {		
+		PairsValueAndIndex[] pairs = new PairsValueAndIndex[vectorR.length];
+				
+		for (int i = 0; i < vectorR.length; i++){			
+			pairs[i] = new PairsValueAndIndex(vectorR[i], i);
+		}
+
+		Arrays.sort(pairs, Collections.reverseOrder());
+
+		int[] result = new int[vectorR.length];
+		int index;
+		for (int i = 0; i < result.length; i++) {			
+			result[i] = pairs[i].index;
+		}
+		return result;
+	} //checked
+	
+	/*private int[] indexesInOrderNew(float[] vectorR) {		
 		LinkedList<PairsValueAndIndex> listOfPairs = new LinkedList<PairsValueAndIndex>();
 				
 		float[] copyOfVector = new float[vectorR.length];
@@ -71,7 +90,7 @@ public class AhpEngine {
 			listOfPairs.add(new PairsValueAndIndex(vectorR[i], i));
 		}
 
-		Arrays.sort(copyOfVector);
+		Arrays.sort(copyOfVector, Collections.reverseOrder());
 
 		int[] result = new int[vectorR.length];
 		int index;
@@ -81,7 +100,7 @@ public class AhpEngine {
 		}
 		return result;
 	}
-
+*/
 	/*private int[] indexesInOrder(float[] vectorR) {
 		float[] copyOfVector = new float[vectorR.length];
 		for (int i = 0; i < vectorR.length; i++)
@@ -400,5 +419,22 @@ public class AhpEngine {
 		System.out.println("ChooseBestVariant");
 		float[] vectorR =  ahpEngine.calculateVectorR(vectorsS, vectorS);
 		printVector(vectorR);
+		
+		
+		
+		int[] indexesInOrder;
+		indexesInOrder = ahpEngine.indexesInOrderNewer(vectorR);
+		System.out.println("Indexes in order:");
+		for (int i : indexesInOrder) {
+			System.out.print(i+" ");
+		}
+		
+		indexesInOrder = ahpEngine.indexesInOrderNewer(new float[]{5,2,5,1,4,4,0,4});
+		System.out.println("Indexes in order:");
+		for (int i : indexesInOrder) {
+			System.out.print(i+" ");
+		}
+		
+		
 	}
 }

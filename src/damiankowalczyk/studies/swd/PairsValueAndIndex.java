@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 import org.junit.experimental.categories.Categories.ExcludeCategory;
 
-public class PairsValueAndIndex {
+public class PairsValueAndIndex implements Comparable<PairsValueAndIndex>{
 	float value;
 	int index;
 	
@@ -17,6 +17,11 @@ public class PairsValueAndIndex {
 	@Override
 	public boolean equals(Object obj) {		
 		return (obj instanceof PairsValueAndIndex)? this.value == ((PairsValueAndIndex) obj).value : false;
+	}
+
+	@Override
+	public int compareTo(PairsValueAndIndex o) {
+		return (this.value>o.value)? 1 : (this.value < o.value)? -1 : 0;		
 	}
 	
 	
