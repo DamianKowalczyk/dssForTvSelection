@@ -11,11 +11,7 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MaximizeAction;
 public class AhpEngine {
 	float[][] preferencesMatrix;
 	float[][][] matrixes; // all matrixes as
-	/*
-	 * float[][] v; float vecC[]; float[] vectorS0; float[][] vectors; float[][]
-	 * c; float[] c0; float[] vectorR;
-	 */
-
+	
 	private float consistencyCoefficientLimit = 0.1f;
 
 	private float[] randomConsistencyIndexes = { 10.0f, 10.0f, 10.0f, 0.58f,
@@ -25,32 +21,7 @@ public class AhpEngine {
 	public AhpEngine() {
 	}
 
-	/*
-	 * public void calculate() { preferencesMatrix =
-	 * completeMatrix(preferencesMatrix); // c0=new
-	 * float[preferencesMatrix.length]; c0 = calculateC(preferencesMatrix);
-	 * vectorS0 = new float[preferencesMatrix.length]; vectorS0 =
-	 * calculateVectorS(normalizeMatrix(preferencesMatrix));
-	 * checkConsistency(c0, vectorS0);
-	 * 
-	 * c = new float[matrixes.length][matrixes[0].length]; vectors = new
-	 * float[matrixes.length][matrixes[0].length];
-	 * 
-	 * for (int i = 0; i < matrixes.length; i++) { // matrixes[i] =
-	 * completeMatrix(matrixes[i]);
-	 * 
-	 * System.out.println(matrixes[i][0][2]); c[i] = calculateC(matrixes[i]);
-	 * System.out.println(c[i][0]); vectors[i] =
-	 * calculateVectorS(normalizeMatrix(matrixes[i])); System.out.println("s" +
-	 * i + ": "); System.out.println(vectors[i][0]);
-	 * 
-	 * checkConsistency(c[i], vectors[i]); }
-	 * 
-	 * vectorR = calculateVectorR(fillMatrixV(vectors), vectorS0);
-	 * 
-	 * }
-	 */
-
+	
 	public int[] calculateOrderWhenMatrixCoherent() {
 		float[] vectorS0 = calculateVectorS(normalizeMatrix(preferencesMatrix));
 		float[][] vectorsS = new float[preferencesMatrix.length][];
@@ -81,66 +52,7 @@ public class AhpEngine {
 		return result;
 	} //checked
 	
-	/*private int[] indexesInOrderNew(float[] vectorR) {		
-		LinkedList<PairsValueAndIndex> listOfPairs = new LinkedList<PairsValueAndIndex>();
-				
-		float[] copyOfVector = new float[vectorR.length];
-		for (int i = 0; i < vectorR.length; i++){
-			copyOfVector[i] = vectorR[i];
-			listOfPairs.add(new PairsValueAndIndex(vectorR[i], i));
-		}
-
-		Arrays.sort(copyOfVector, Collections.reverseOrder());
-
-		int[] result = new int[vectorR.length];
-		int index;
-		for (int i = 0; i < result.length; i++) {
-			index = listOfPairs.indexOf(new PairsValueAndIndex(copyOfVector[i], 0));
-			result[i] = listOfPairs.remove(index).index;
-		}
-		return result;
-	}
-*/
-	/*private int[] indexesInOrder(float[] vectorR) {
-		float[] copyOfVector = new float[vectorR.length];
-		for (int i = 0; i < vectorR.length; i++)
-			copyOfVector[i] = vectorR[i];
-
-		Arrays.sort(copyOfVector);
-
-		int[] result = new int[vectorR.length];
-		for (int i = 0; i < result.length; i++) {
-			result[i] = findIndexForValue(copyOfVector[i], vectorR);
-		}
-		return result;
-	}
-
-	private int[] indexesInOrder2(float[] vectorR) {
-		float[] copyOfVector = new float[vectorR.length];
-		for (int i = 0; i < vectorR.length; i++)
-			copyOfVector[i] = vectorR[i];
-		
-		int[] result = new int[vectorR.length];
-		
-		for (int i = 0; i < result.length; i++) {
-			result[i] = findIndexForValue(copyOfVector[i], vectorR);
-		}
-		
-		for (int i = 0; i < result.length - 1; i++) {
-			while (result[i] >= result[i + 1]) {
-				result[i + 1]++;
-			}
-		}
-		return result;
-	}
-
-	private int findIndexForValue(float value, float[] vectorR) {
-		int index = 0;
-		while (value != vectorR[index])
-			index++;
-		return index;
-	}*/
-
+	
 	private float[] calculateVectorR(float[][] vectorsS, float[] s0) {
 		float[] result = new float[vectorsS[0].length];
 		float sum;
@@ -154,18 +66,8 @@ public class AhpEngine {
 		return result;
 	} // checked and corrected
 
-	/*
-	 * private float[] calculateVectorR(float[][] v, float[] s0) { float[]
-	 * result = new float[s0.length]; float sum; for (int i = 0; i < s0.length;
-	 * i++) { sum = 0.0f; for (int j = 0; j < v.length; j++) { sum += v[i][j] *
-	 * s0[j]; } result[i] = sum; } return result; }
-	 */
-
-	/*
-	 * private float[][] fillMatrixV(float[]... s) { float[][] v = new
-	 * float[s.length][s[0].length]; for (int i = 0; i < v.length; i++) { v[i] =
-	 * s[i]; } return v; }
-	 */
+	
+	 
 
 	/**
 	 * this method will add 1.0 on the diagonal of matrix and fill the second
@@ -434,7 +336,6 @@ public class AhpEngine {
 		for (int i : indexesInOrder) {
 			System.out.print(i+" ");
 		}
-		
 		
 	}
 }
