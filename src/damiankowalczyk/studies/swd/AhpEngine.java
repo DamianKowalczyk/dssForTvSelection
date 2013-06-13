@@ -123,17 +123,17 @@ public class AhpEngine {
 	}*/
 
 	private float[] calculateVectorR(float[][] vectorsS, float[] s0) {
-		float[] result = new float[matrixes.length];
+		float[] result = new float[vectorsS[0].length];
 		float sum;
-		for (int i = 0; i < matrixes.length; i++) {
+		for (int i = 0; i < vectorsS[0].length; i++) {
 			sum = 0.0f;
 			for (int j = 0; j < vectorsS.length; j++) {
-				sum += vectorsS[i][j] * s0[j];
+				sum += vectorsS[j][i] * s0[j];
 			}
 			result[i] = sum;
 		}
 		return result;
-	} // checked
+	} // checked and corrected
 
 	/*
 	 * private float[] calculateVectorR(float[][] v, float[] s0) { float[]
@@ -175,7 +175,7 @@ public class AhpEngine {
 				c[i] += matrix[j][i];
 			}
 		}
-		printVector(c);
+//		printVector(c);
 		return c;
 	} // checked
 
@@ -187,6 +187,7 @@ public class AhpEngine {
 				result[j][i] = matrix[j][i] / c[i];
 			}
 		}
+//		printMatrix(result);
 		return result;
 	} // checked
 
@@ -200,6 +201,7 @@ public class AhpEngine {
 			}
 			resultVector[i] = sumValuesInRow / matrix.length;
 		}
+//		printVector(resultVector);
 		return resultVector;
 	} // checked
 
@@ -227,7 +229,7 @@ public class AhpEngine {
 			completeMatrix(this.matrixes[i]);
 		}
 
-		printAllFeatureMatrixes(this.matrixes);
+//		printAllFeatureMatrixes(this.matrixes);
 	} // checked
 
 	public float[][] getPreferencesMatrix() {
@@ -238,7 +240,7 @@ public class AhpEngine {
 		this.preferencesMatrix = preferencesMatrix;
 		this.completeMatrix(this.preferencesMatrix);
 		
-		printMatrix(this.preferencesMatrix);
+//		printMatrix(this.preferencesMatrix);
 	} // checked
 
 	public float[][][] getMatrixes() {
@@ -250,7 +252,8 @@ public class AhpEngine {
 		float lambdaMax = calculateLambdaMax(c, vecS);
 		float consistencyIndex = (lambdaMax - c.length) / (c.length - 1);
 		float consistencyRatio = consistencyIndex / randomConsistencyIndex;
-
+		
+		System.out.println("CR = "+consistencyRatio);
 		return (consistencyRatio < consistencyCoefficientLimit) ? true : false;
 	} // checked
 
@@ -343,16 +346,59 @@ public class AhpEngine {
 		ahpEngine.setMatrixes(otherMatrixes);
 						
 		System.out.println("calculateC(prefMatrix)");
-		ahpEngine.calculateC(prefMatrix);
+		float[] c = ahpEngine.calculateC(prefMatrix);
 		
 		System.out.println("calculateC()");
-		float[] c;
+		float[][] cMatrix = new float[otherMatrixes.length][];
 		for (int i = 0; i < otherMatrixes.length; i++) {
-			c = ahpEngine.calculateC(otherMatrixes[i]);			
+			cMatrix[i] = ahpEngine.calculateC(otherMatrixes[i]);			
+		}		
+		System.out.println();
+		
+		System.out.println("normalizedPreferenceMatrix");
+		prefMatrix = ahpEngine.normalizeMatrix(prefMatrix);
+		printMatrix(prefMatrix);
+		
+//		System.out.println();
+		System.out.println("normalizedOtherMatrixes");
+		for (int i = 0; i < otherMatrixes.length; i++) {
+			otherMatrixes[i] = ahpEngine.normalizeMatrix(otherMatrixes[i]);			
+		}		
+		printAllFeatureMatrixes(otherMatrixes);
+		
+		System.out.println("calculateVectorS(prefMatrix)");
+		float[] vectorS;
+		vectorS = ahpEngine.calculateVectorS(prefMatrix);
+		printVector(vectorS);
+				
+		System.out.println("calculateVectorsS(otherMatrix)");
+		float[][] vectorsS = new float[otherMatrixes.length][];
+		for (int i = 0; i < otherMatrixes.length; i++) {
+			vectorsS[i] = ahpEngine.calculateVectorS(otherMatrixes[i]);
+			printVector(vectorsS[i]);
 		}
 		
+		System.out.println("calculateLambdaMax");
+		float lambda =  ahpEngine.calculateLambdaMax(c, vectorS);
+		System.out.println(lambda);
 		
+		System.out.println("calculateLambdaMaxVector");
+		float[] lambdaVector = new float[otherMatrixes.length]; 
+		for (int i = 0; i < otherMatrixes.length; i++) {
+			lambdaVector[i] = ahpEngine.calculateLambdaMax(cMatrix[i], vectorsS[i]);			
+		}
+		printVector(lambdaVector);
 		
+		System.out.println("checkConsistency(prefMatrix)");
+		ahpEngine.checkConsistency(c, vectorS);
 		
+		System.out.println("checkConsistency(forOtherMatrixes)");
+		for (int i = 0; i < otherMatrixes.length; i++) {
+			ahpEngine.checkConsistency(cMatrix[i], vectorsS[i]);
+		}
+		
+		System.out.println("ChooseBestVariant");
+		float[] vectorR =  ahpEngine.calculateVectorR(vectorsS, vectorS);
+		printVector(vectorR);
 	}
 }
