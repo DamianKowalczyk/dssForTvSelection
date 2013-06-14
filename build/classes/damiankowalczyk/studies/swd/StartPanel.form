@@ -105,7 +105,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Plazma"/>
+        <Property name="text" type="java.lang.String" value="Plasma"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,6 +26,8 @@ public class StartPanel extends javax.swing.JPanel {
     private ArrayList<PanelForCompareTwoFeatures> panelsForCompTwoFeatures; 
 	
     private int numberOfFeautures;
+    
+    
 	
 	/**
      * Creates new form StartPanel
@@ -89,7 +93,7 @@ public class StartPanel extends javax.swing.JPanel {
     	setOkButtonListener();
     }
     
-    private void setOkButtonListener() {
+    private void setOkButtonListener() {    	
 		jButton1.addActionListener(programFrame.getPanelForCompareTVs().getOkListener());
 	}
 
@@ -129,7 +133,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox3.setText("Plazma");
+        jCheckBox3.setText("Plasma");
 
         jLabel2.setText("Choose size:");
 
@@ -315,5 +319,26 @@ public class StartPanel extends javax.swing.JPanel {
 			createPreferencesMatrix();
 			checkCohesionCoefficient();			
 		}		
+	}
+
+	public List<String> checkJBoxes() {
+		List<String> choosenOptions = new LinkedList<String>();
+		
+		if(jCheckBox1.isSelected())
+			choosenOptions.add("LCD");
+		if(jCheckBox2.isSelected())
+			choosenOptions.add("LED");
+		if(jCheckBox3.isSelected())
+			choosenOptions.add("Plasma");
+		if(jCheckBox4.isSelected())
+			choosenOptions.add("19-28");
+		if(jCheckBox5.isSelected())
+			choosenOptions.add("32-39");
+		if(jCheckBox6.isSelected())
+			choosenOptions.add("40-42");
+		if(jCheckBox7.isSelected())
+			choosenOptions.add("43+");				
+				
+		return choosenOptions;
 	}
 }

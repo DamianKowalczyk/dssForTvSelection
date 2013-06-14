@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -95,7 +96,9 @@ public class PanelForCompareTVs extends javax.swing.JPanel {
 	}*/
 
 	private void createPairsOfTVsToCompare() {		
-		allFilteredTVs = new TVsetsForCompare().getFilteredTVs();
+		List<String> choosenOption = startPanel.checkJBoxes();		
+		
+		allFilteredTVs = new TVsetsForCompare().getFilteredTVs(choosenOption);
 		int pairsOfTVsToCompareNumber = (allFilteredTVs.size()*(allFilteredTVs.size()-1))/2;
 		
 		pairsOfTVtoCompare = new TVset[pairsOfTVsToCompareNumber][2];

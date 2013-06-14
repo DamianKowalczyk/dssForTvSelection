@@ -3,7 +3,7 @@ package damiankowalczyk.studies.swd;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-import org.junit.experimental.categories.Categories.ExcludeCategory;
+
 
 public class PairsValueAndIndex implements Comparable<PairsValueAndIndex>{
 	float value;

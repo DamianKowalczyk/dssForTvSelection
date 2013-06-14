@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.net.URLDecoder;
 import java.security.CodeSource;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class TVsetsForCompare {
@@ -68,16 +69,41 @@ public class TVsetsForCompare {
 		return result;
 	}
 	
-	private ArrayList<TVset> chooseOnlyTVWithChoosenParameters(){
+	private ArrayList<TVset> chooseOnlyTVWithChoosenParameters(List<String> choosenOption){
 		// modify this code in further time
 		//should make some filtration
-		TvsToCompare = loadedTvs;
+		//TvsToCompare=loadedTvs;
+		
+		String matrixKind = "";
+		String displaySize = "";
+		
+		TvsToCompare = new ArrayList<TVset>(0);		
+		for (TVset currentTV : loadedTvs) {
+			matrixKind = currentTV.feautures.get(2); // matrix kind is on the second position in txt file
+			displaySize = currentTV.feautures.get(3); // display size is on the second position in txt file
+			
+			int displaySizeIntValue = Integer.parseInt(displaySize);
+			
+			if(displaySizeIntValue>=19 && displaySizeIntValue<=28)
+				displaySize = "19-28";
+			else if(displaySizeIntValue>=32 && displaySizeIntValue<=39)
+				displaySize = "32-39";
+			else if(displaySizeIntValue>=40 && displaySizeIntValue<=42)
+				displaySize = "40-42";
+			else if(displaySizeIntValue>=43)
+				displaySize = "43+";
+			else 
+				displaySize = "stringWithForShureWontBeInChoosenOptions";
+			
+			if (choosenOption.contains(matrixKind)&&choosenOption.contains(displaySize))
+				TvsToCompare.add(currentTV);
+		}
 		
 		return TvsToCompare;
 	}
 	
-	public ArrayList<TVset> getFilteredTVs() {
-		return chooseOnlyTVWithChoosenParameters();
+	public ArrayList<TVset> getFilteredTVs(List<String> choosenOption) {
+		return chooseOnlyTVWithChoosenParameters(choosenOption);
 	}
 	
 }
