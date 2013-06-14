@@ -139,7 +139,7 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="50&apos;&apos; and more"/>
+        <Property name="text" type="java.lang.String" value="43&apos;&apos; and more"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">

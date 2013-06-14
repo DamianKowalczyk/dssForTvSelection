@@ -158,7 +158,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
-        jCheckBox7.setText("50'' and more");
+        jCheckBox7.setText("43'' and more");
 
         jButton1.setText("OK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

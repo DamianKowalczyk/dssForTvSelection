@@ -79,8 +79,12 @@ public class TVsetsForCompare {
 		
 		TvsToCompare = new ArrayList<TVset>(0);		
 		for (TVset currentTV : loadedTvs) {
-			matrixKind = currentTV.feautures.get(2); // matrix kind is on the second position in txt file
-			displaySize = currentTV.feautures.get(3); // display size is on the second position in txt file
+			//ArrayList<String> feauturesOfTV= currentTV.feautures;
+			matrixKind = currentTV.feautures.get(1).toString(); // matrix kind is on the second position in txt file
+			displaySize = currentTV.feautures.get(2).toString(); // display size is on the second position in txt file
+			
+//			matrixKind = feauturesOfTV.get(1); // matrix kind is on the second position in txt file
+//			displaySize = feauturesOfTV.get(2); // display size is on the second position in txt file
 			
 			int displaySizeIntValue = Integer.parseInt(displaySize);
 			
@@ -95,11 +99,26 @@ public class TVsetsForCompare {
 			else 
 				displaySize = "stringWithForShureWontBeInChoosenOptions";
 			
-			if (choosenOption.contains(matrixKind)&&choosenOption.contains(displaySize))
+			//if (choosenOption.contains(matrixKind)&&choosenOption.contains(displaySize))
+			if (areBothInChoosenOptions(matrixKind, displaySize, choosenOption))
 				TvsToCompare.add(currentTV);
 		}
 		
 		return TvsToCompare;
+	}
+	
+	private boolean areBothInChoosenOptions(String matrixKind, String displaySize , List<String> choosenOptions){
+		boolean isMatrixInChoosenOptions = false;
+		boolean isDisplaySizeInChoosenOptions = false;
+		
+		for (String currentOptionValue : choosenOptions) {
+			if (currentOptionValue.equals(matrixKind))
+				isMatrixInChoosenOptions = true;
+			else if (currentOptionValue.equals(displaySize)) {
+				isDisplaySizeInChoosenOptions = true;
+			}
+		}
+		return isMatrixInChoosenOptions && isDisplaySizeInChoosenOptions;
 	}
 	
 	public ArrayList<TVset> getFilteredTVs(List<String> choosenOption) {
